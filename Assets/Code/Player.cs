@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
             _normalizedHorizontalSpeed = 0;
         }
 
-        if (_controller.CanJump && Input.GetKeyDown(KeyCode.Space) || _controller.CanJump && Input.GetKeyDown("up"))
+        if (_controller.CanJump && Input.GetKeyDown(KeyCode.Space) || _controller.CanJump && Input.GetKeyDown("up") || _controller.CanJump && Input.GetKeyDown(KeyCode.W))
         {
             _controller.Jump();
         }
