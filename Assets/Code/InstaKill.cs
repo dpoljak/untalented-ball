@@ -10,6 +10,4 @@ public class InstaKill : MonoBehaviour
 
         LevelManager.Instance.KillPlayer();
     }
-
-
 }
