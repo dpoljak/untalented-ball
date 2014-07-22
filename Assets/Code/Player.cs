@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour 
+public class Player : MonoBehaviour, ITakeDamage
 {
     private bool _isFacingRight;
     private CharacterController2D _controller;
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         transform.position = spawnPoint.position;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject instagator)
     {
         FloatingText.Show(string.Format("-{0}", damage), "PlayerTakeDamageText",
             new FromWorldPointTextPositioner(Camera.main, transform.position, 2f, 60));
