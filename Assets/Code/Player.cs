@@ -81,6 +81,12 @@ public class Player : MonoBehaviour, ITakeDamage
             LevelManager.Instance.KillPlayer();
     }
 
+    public void GiveHealth(int health, GameObject instiagator)
+    {
+        FloatingText.Show(string.Format("+{0}!", health), "PlayerGotHealthText",
+            new FromWorldPointTextPositioner(Camera.main, transform.position, 1.5f, 50));
+        Health = Mathf.Min(Health + health, MaxHealth);
+    }
 
     private void HandleInput()
     {
