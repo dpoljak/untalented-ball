@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, ITakeDamage
     public AudioClip PlayerHitSound;
     public AudioClip PlayerShootSound;
     public AudioClip PlayerHealthSound;
+    public Animator Animator;
 
     public bool IsDead { get; private set; }
     public int Health { get; private set; }
@@ -46,6 +47,10 @@ public class Player : MonoBehaviour, ITakeDamage
             _controller.SetHorizontalForce(0);
         else
             _controller.SetHorizontalForce(Mathf.Lerp(_controller.Velocity.x, _normalizedHorizontalSpeed * MaxSpeed, Time.deltaTime * movementFactor));
+
+        Animator.SetBool("IsGrounded", _controller.State.IsGrounded);
+        Animator.SetBool("IsDead", IsDead);
+        Animator.SetFloat("Speed", Mathf.Abs(_controller.Velocity.x)/MaxSpeed);
 
     }
 
@@ -147,6 +152,8 @@ public class Player : MonoBehaviour, ITakeDamage
         projectile.Initialize(gameObject, direction, _controller.Velocity);
 
         AudioSource.PlayClipAtPoint(PlayerShootSound, transform.position);
+
+        Animator.SetTrigger("Fire");
 
         _canFireIn = FireRate;
     }
